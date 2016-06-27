@@ -1,0 +1,35 @@
+<html>
+
+<head>
+
+    <script src="https://code.jquery.com/jquery-3.0.0.min.js" integrity="sha256-JmvOoLtYsmqlsWxa7mDSLMwa6dZ9rrIdtrrVYRnDRH0="
+        crossorigin="anonymous"></script>
+
+
+    <link rel="stylesheet" href="css/ion.rangeSlider.css"></link>
+    <link rel="stylesheet" href="css/ion.rangeSlider.skinHTML5.css"></link>
+    <script type="text/javascript" src="js/ion.rangeSlider.js"></script>
+
+</head>
+
+<body>
+
+    <input type="text" id="example_id" name="example_name" value="" />
+
+    <script>
+
+        $(document).ready(function(){
+            console.log('jquery loaded');
+
+            $("#example_id").ionRangeSlider({
+                min: 0,
+                max: 99999,
+                from: 1000,
+                to: 9000,
+                type: 'double',
+            });
+        })
+        </script>
+</body>
+
+</html>
