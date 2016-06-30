@@ -22,8 +22,7 @@
     "use strict";
 
     // =================================================================================================================
-    // Service
-
+    // Service    
     var plugin_count = 0;
 
     // IE8 fix
@@ -56,7 +55,7 @@
 
                     if (this instanceof bound) {
 
-                        var F = function(){};
+                        var F = function () { };
                         F.prototype = target.prototype;
                         var self = new F();
 
@@ -84,7 +83,7 @@
         };
     }
     if (!Array.prototype.indexOf) {
-        Array.prototype.indexOf = function(searchElement, fromIndex) {
+        Array.prototype.indexOf = function (searchElement, fromIndex) {
             var k;
             if (this == null) {
                 throw new TypeError('"this" is null or not defined');
@@ -126,11 +125,11 @@
     //     '<span class="irs-grid"></span>' +
     //     '<span class="irs-bar"></span>';
 
-        var base_html =
+    var base_html =
         '<span class="irs">' +
         '<span class="irs-line" tabindex="-1"><span class="irs-line-left"></span><span class="irs-line-mid"></span><span class="irs-line-right"></span></span>' +
         '<span class="irs-min">0</span><span class="irs-max">1</span>' +
-        '<input style="z-index=99999; width: 100px; border-radius: 5px; text-align: center;" value="0" class="irs-from">0</input><input style="z-index=99999; width: 100px; border-radius: 5px; text-align: center;" value="0" class="irs-to">0</input><input style="z-index=99999; width: 100px; border-radius: 5px; text-align: center;" value="0" class="irs-single"></input>' +
+        '<input style="z-index=99999; width: 100px; border-radius: 5px; text-align: center;" value="0" class="irs-from"></input><input style="z-index=99999; width: 100px; border-radius: 5px; text-align: center;" value="0" class="irs-to"></input><input style="z-index=99999; width: 100px; border-radius: 5px; text-align: center;" value="0" class="irs-single"></input>' +
         '</span>' +
         '<span class="irs-grid"></span>' +
         '<span class="irs-bar"></span>';
@@ -466,6 +465,9 @@
          *
          * @param is_update {boolean}
          */
+
+
+
         init: function (is_update) {
             this.no_diapason = false;
             this.coords.p_step = this.convertToPercent(this.options.step, true);
@@ -497,6 +499,17 @@
          * Appends slider template to a DOM
          */
         append: function () {
+
+            var self = this;
+
+            var delay = (function () {
+                var timer = 0;
+                return function (callback, ms) {
+                    clearTimeout(timer);
+                    timer = setTimeout(callback, ms);
+                };
+            })();
+
             var container_html = '<span class="irs js-irs-' + this.plugin_count + '"></span>';
             this.$cache.input.before(container_html);
             this.$cache.input.prop("readonly", false);
@@ -508,7 +521,31 @@
             this.$cache.min = this.$cache.cont.find(".irs-min");
             this.$cache.max = this.$cache.cont.find(".irs-max");
             this.$cache.from = this.$cache.cont.find(".irs-from");
+            this.$cache.from.keyup(function () {
+
+                var key = $(this);
+                delay(function () {
+                    var from = key.val();
+                    from = from.replace(' ', '');
+                    from = parseInt(from);
+
+                    self.update({ from: from });
+                    self.callOnChange();
+                }, 1000);
+            });
+
             this.$cache.to = this.$cache.cont.find(".irs-to");
+            this.$cache.to.keyup(function () {
+                var key = $(this);
+                delay(function () {
+                    var to = key.val();
+                    to = to.replace(' ', '');
+                    to = parseInt(to);
+
+                    self.update({ to: to });
+                    self.callOnChange();
+                }, 1000);
+            })
             this.$cache.single = this.$cache.cont.find(".irs-single");
             this.$cache.bar = this.$cache.cont.find(".irs-bar");
             this.$cache.line = this.$cache.cont.find(".irs-line");
@@ -754,7 +791,7 @@
                 this.is_finish = true;
                 this.callOnFinish();
             }
-            
+
             this.dragging = false;
         },
 
@@ -1000,7 +1037,7 @@
                     if (this.options.from_fixed) {
                         break;
                     }
-                    
+
                     this.coords.p_single_real = this.convertToRealPercent(handle_x);
                     this.coords.p_single_real = this.calcWithStep(this.coords.p_single_real);
                     this.coords.p_single_real = this.checkDiapason(this.coords.p_single_real, this.options.from_min, this.options.from_max);
@@ -1139,7 +1176,7 @@
                 return;
             }
 
-            if (this.coords.x_pointer < 0 || isNaN(this.coords.x_pointer)  ) {
+            if (this.coords.x_pointer < 0 || isNaN(this.coords.x_pointer)) {
                 this.coords.x_pointer = 0;
             } else if (this.coords.x_pointer > this.coords.w_rs) {
                 this.coords.x_pointer = this.coords.w_rs;
@@ -2225,7 +2262,7 @@
             } else {
                 this.coords.w_handle = this.$cache.s_from.outerWidth(false);
             }
-            this.coords.p_handle = this.toFixed(this.coords.w_handle  / this.coords.w_rs * 100);
+            this.coords.p_handle = this.toFixed(this.coords.w_handle / this.coords.w_rs * 100);
             this.coords.grid_gap = this.toFixed((this.coords.p_handle / 2) - 0.1);
 
             this.$cache.grid[0].style.width = this.toFixed(100 - this.coords.p_handle) + "%";
@@ -2236,6 +2273,7 @@
 
         // =============================================================================================================
         // Public methods
+
 
         update: function (options) {
             if (!this.input) {
@@ -2281,7 +2319,7 @@
     };
 
     $.fn.ionRangeSlider = function (options) {
-        return this.each(function() {
+        return this.each(function () {
             if (!$.data(this, "ionRangeSlider")) {
                 $.data(this, "ionRangeSlider", new IonRangeSlider(this, options, plugin_count++));
             }
@@ -2298,29 +2336,29 @@
 
     // MIT license
 
-    (function() {
+    (function () {
         var lastTime = 0;
         var vendors = ['ms', 'moz', 'webkit', 'o'];
-        for(var x = 0; x < vendors.length && !window.requestAnimationFrame; ++x) {
-            window.requestAnimationFrame = window[vendors[x]+'RequestAnimationFrame'];
-            window.cancelAnimationFrame = window[vendors[x]+'CancelAnimationFrame']
-                || window[vendors[x]+'CancelRequestAnimationFrame'];
+        for (var x = 0; x < vendors.length && !window.requestAnimationFrame; ++x) {
+            window.requestAnimationFrame = window[vendors[x] + 'RequestAnimationFrame'];
+            window.cancelAnimationFrame = window[vendors[x] + 'CancelAnimationFrame']
+                || window[vendors[x] + 'CancelRequestAnimationFrame'];
         }
 
         if (!window.requestAnimationFrame)
-            window.requestAnimationFrame = function(callback, element) {
+            window.requestAnimationFrame = function (callback, element) {
                 var currTime = new Date().getTime();
                 var timeToCall = Math.max(0, 16 - (currTime - lastTime));
-                var id = window.setTimeout(function() { callback(currTime + timeToCall); },
+                var id = window.setTimeout(function () { callback(currTime + timeToCall); },
                     timeToCall);
                 lastTime = currTime + timeToCall;
                 return id;
             };
 
         if (!window.cancelAnimationFrame)
-            window.cancelAnimationFrame = function(id) {
+            window.cancelAnimationFrame = function (id) {
                 clearTimeout(id);
             };
-    }());
+    } ());
 
 }));
