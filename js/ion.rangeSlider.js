@@ -10,6 +10,15 @@
 // http://ionden.com/a/plugins/licence-en.html
 // =====================================================================================================================
 
+
+function fromFocus(){    
+    $('.irs-from').val('');
+}
+
+function toFocus(){
+    $('.irs-to').val('');
+}
+
 (function (factory) {
     if (typeof define === 'function' && define.amd) {
         define(['jquery'], function ($) {
@@ -129,7 +138,7 @@
         '<span class="irs">' +
         '<span class="irs-line" tabindex="-1"><span class="irs-line-left"></span><span class="irs-line-mid"></span><span class="irs-line-right"></span></span>' +
         '<span class="irs-min">0</span><span class="irs-max">1</span>' +
-        '<input style="z-index=99999; width: 100px; border-radius: 5px; text-align: center;" value="0" class="irs-from"></input><input style="z-index=99999; width: 100px; border-radius: 5px; text-align: center;" value="0" class="irs-to"></input><input style="z-index=99999; width: 100px; border-radius: 5px; text-align: center;" value="0" class="irs-single"></input>' +
+        '<input style="z-index=99999; width: 100px; border-radius: 5px; text-align: center;" onfocus="fromFocus();" value="0" class="irs-from"></input><input onfocus="toFocus();" style="z-index=99999; width: 100px; border-radius: 5px; text-align: center;" value="0" class="irs-to"></input><input style="z-index=99999; width: 100px; border-radius: 5px; text-align: center;" value="0" class="irs-single"></input>' +
         '</span>' +
         '<span class="irs-grid"></span>' +
         '<span class="irs-bar"></span>';
@@ -521,8 +530,13 @@
             this.$cache.min = this.$cache.cont.find(".irs-min");
             this.$cache.max = this.$cache.cont.find(".irs-max");
             this.$cache.from = this.$cache.cont.find(".irs-from");
-            this.$cache.from.keyup(function () {
 
+            this.$cache.from.onfocus = function(){
+                console.log('clicked bitch');
+            }
+
+            this.$cache.from.keyup(function () {
+                
                 var key = $(this);
                 delay(function () {
                     var from = key.val();
