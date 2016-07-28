@@ -11,17 +11,6 @@
 // =====================================================================================================================
 
 
-<<<<<<< HEAD
-=======
-function fromFocus(){    
-    $('.irs-from').val('');
-}
-
-function toFocus(){
-    $('.irs-to').val('');
-}
->>>>>>> cc16b0b72eb726ff774b5b2cfed2af0ef7a83753
-
 (function (factory) {
     if (typeof define === 'function' && define.amd) {
         define(['jquery'], function ($) {
