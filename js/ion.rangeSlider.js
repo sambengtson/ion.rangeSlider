@@ -10,6 +10,8 @@
 // http://ionden.com/a/plugins/licence-en.html
 // =====================================================================================================================
 
+
+
 (function (factory) {
     if (typeof define === 'function' && define.amd) {
         define(['jquery'], function ($) {
@@ -521,8 +523,14 @@
             this.$cache.min = this.$cache.cont.find(".irs-min");
             this.$cache.max = this.$cache.cont.find(".irs-max");
             this.$cache.from = this.$cache.cont.find(".irs-from");
-            this.$cache.from.keyup(function () {
 
+        
+            this.$cache.from.focus(function(){
+                $(this).val('');
+            });            
+
+            this.$cache.from.keyup(function () {
+                
                 var key = $(this);
                 delay(function () {
                     var from = key.val();
@@ -535,6 +543,11 @@
             });
 
             this.$cache.to = this.$cache.cont.find(".irs-to");
+
+            this.$cache.to.focus(function(){
+                            $(this).val('');
+                        });
+
             this.$cache.to.keyup(function () {
                 var key = $(this);
                 delay(function () {
