@@ -130,7 +130,7 @@
         '<span class="irs">' +
         '<span class="irs-line" tabindex="-1"><span class="irs-line-left"></span><span class="irs-line-mid"></span><span class="irs-line-right"></span></span>' +
         '<span class="irs-min">0</span><span class="irs-max">1</span>' +
-        '<input style="z-index=99999; width: 100px; border-radius: 5px; text-align: center;" onfocus="fromFocus();" value="0" class="irs-from"></input><input onfocus="toFocus();" style="z-index=99999; width: 100px; border-radius: 5px; text-align: center;" value="0" class="irs-to"></input><input style="z-index=99999; width: 100px; border-radius: 5px; text-align: center;" value="0" class="irs-single"></input>' +
+        '<input style="font-size: .6em; z-index=99999; width: 50px; border-radius: 5px; text-align: center;" onfocus="fromFocus();" value="0" class="irs-from"></input><input onfocus="toFocus();" style="font-size: .6em; z-index=99999; width: 50px; border-radius: 5px; text-align: center;" value="0" class="irs-to"></input><input style="z-index=99999; width: 100px; border-radius: 5px; text-align: center;" value="0" class="irs-single"></input>' +
         '</span>' +
         '<span class="irs-grid"></span>' +
         '<span class="irs-bar"></span>';
