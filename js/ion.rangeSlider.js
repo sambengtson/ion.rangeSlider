@@ -11,6 +11,16 @@
 // =====================================================================================================================
 
 
+<<<<<<< HEAD
+=======
+function fromFocus(){    
+    $('.irs-from').val('');
+}
+
+function toFocus(){
+    $('.irs-to').val('');
+}
+>>>>>>> cc16b0b72eb726ff774b5b2cfed2af0ef7a83753
 
 (function (factory) {
     if (typeof define === 'function' && define.amd) {
@@ -131,7 +141,7 @@
         '<span class="irs">' +
         '<span class="irs-line" tabindex="-1"><span class="irs-line-left"></span><span class="irs-line-mid"></span><span class="irs-line-right"></span></span>' +
         '<span class="irs-min">0</span><span class="irs-max">1</span>' +
-        '<input style="z-index=99999; width: 100px; border-radius: 5px; text-align: center;" value="0" class="irs-from"></input><input style="z-index=99999; width: 100px; border-radius: 5px; text-align: center;" value="0" class="irs-to"></input><input style="z-index=99999; width: 100px; border-radius: 5px; text-align: center;" value="0" class="irs-single"></input>' +
+        '<input style="z-index=99999; width: 100px; border-radius: 5px; text-align: center;" onfocus="fromFocus();" value="0" class="irs-from"></input><input onfocus="toFocus();" style="z-index=99999; width: 100px; border-radius: 5px; text-align: center;" value="0" class="irs-to"></input><input style="z-index=99999; width: 100px; border-radius: 5px; text-align: center;" value="0" class="irs-single"></input>' +
         '</span>' +
         '<span class="irs-grid"></span>' +
         '<span class="irs-bar"></span>';
@@ -524,7 +534,7 @@
             this.$cache.max = this.$cache.cont.find(".irs-max");
             this.$cache.from = this.$cache.cont.find(".irs-from");
 
-        
+
             this.$cache.from.focus(function(){
                 $(this).val('');
             });            
@@ -545,8 +555,8 @@
             this.$cache.to = this.$cache.cont.find(".irs-to");
 
             this.$cache.to.focus(function(){
-                            $(this).val('');
-                        });
+                  $(this).val('');
+            });
 
             this.$cache.to.keyup(function () {
                 var key = $(this);
